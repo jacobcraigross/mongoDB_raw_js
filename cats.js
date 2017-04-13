@@ -7,16 +7,15 @@ var catSchema = new mongoose.Schema ({
    color: String
 });
 
-var cat = mongoose.model("Cat", catSchema);
+var Cat = mongoose.model("Cat", catSchema);
 
 // add a new cat to the DB
 
-var ninja = new cat ({
+var ninja = new Cat ({
    name: "Ninja",
    age: 8,
    color: "grey"
 });
-
 ninja.save(function(err, cat){
    if (err){
        console.log("NO BUENO");
@@ -26,7 +25,29 @@ ninja.save(function(err, cat){
    }
 });
 
+// create method! 
+
+Cat.create({
+   name: "Sara",
+   age: 6, 
+   color: "brown"
+}, function (err, cat){
+   if (err) {
+      console.log(err);
+   } else {
+      console.log(cat);
+   }
+});
+
 // retrieve all cats from the DB and console.log each once. 
 
-// adding the rest of this code here shortly!!
+Cat.find({}, function(err, cats){
+   if (err) {
+      console.log("ERROR!!!");
+      console.log(err);
+   } else {
+      console.log("here are the cats..");
+      console.log(cats);
+   }
+});
 
